@@ -10,7 +10,14 @@ const defaultSisterContent = {
 const $ = (s) => document.querySelector(s);
 
 async function api(url, options = {}) {
-  const res = await fetch(url, options);
+  let res;
+  try {
+    res = await fetch(url, options);
+  } catch (err) {
+    throw new Error(
+      "Could not reach the server. Check that the Railway service is running and try again."
+    );
+  }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || "Request failed.");
   return data;

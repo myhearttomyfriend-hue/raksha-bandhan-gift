@@ -405,6 +405,10 @@ app.post(
     const id = Number(req.params.id);
     const sister = db.prepare("SELECT id FROM sisters WHERE id = ?").get(id);
 
+    if (!req.file) {
+      return res.status(400).json({ error: "No music file was uploaded." });
+    }
+
     if (!sister) {
       for (const f of req.files || []) safeDelete(f.filename);
       return res.status(404).json({ error: "Sister not found." });
