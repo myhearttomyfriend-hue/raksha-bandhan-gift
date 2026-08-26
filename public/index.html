@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#8f3148">
+  <title>For My Sister ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="ambient"></div>
+  <div id="falling-layer" aria-hidden="true"></div>
+
+  <section id="gate" class="gate">
+    <div class="gate-card glass">
+      <div class="ornament">🪷</div>
+      <div class="mini-label">A LITTLE SURPRISE FROM VAMSI</div>
+      <h1>For My Dear Sister</h1>
+      <p class="gate-subtitle">There is something special waiting for you.</p>
+
+      <div class="divider"><span>♥</span></div>
+
+      <label for="sisterName">Who are you, sister? ❤️</label>
+      <input id="sisterName" autocomplete="off" placeholder="Enter your name">
+
+      <button id="unlockBtn" class="primary-btn">Unlock My Gift ✨</button>
+      <p id="gateError" class="error"></p>
+
+      <div class="tiny-note">One name. One story. One special surprise.</div>
+    </div>
+  </section>
+
+  <section id="designGate" class="gate hidden">
+    <div class="designer glass">
+      <div class="designer-header"><span class="designer-brand">Rakhi Studio</span><span>✦</span></div>
+      <div class="mini-label">MAKE IT YOURS</div>
+      <h1>Design Your Rakhi</h1>
+      <div class="designer-preview" id="designerPreview">
+        <div class="designer-thread"></div>
+        <div class="designer-rakhi"><div class="designer-pattern">♥</div></div>
+        <div class="designer-thread"></div>
+      </div>
+      <h2>Your Rakhi</h2>
+      <button id="downloadRakhi" class="download-btn" type="button">⇩ &nbsp; Download Rakhi</button>
+
+      <div class="designer-tabs" role="tablist" aria-label="Rakhi design settings">
+        <button class="designer-tab active" data-tab="colors" type="button">◉<span>Colors</span></button>
+        <button class="designer-tab" data-tab="shape" type="button">○<span>Shape</span></button>
+        <button class="designer-tab" data-tab="pattern" type="button">♡<span>Pattern</span></button>
+        <button class="designer-tab" data-tab="style" type="button">☆<span>Style</span></button>
+      </div>
+      <div class="designer-panel" data-panel="colors">
+        <h3>Colors</h3><div class="swatches">
+          <button class="swatch selected" data-setting="color" data-value="green" aria-label="Green and pink"></button>
+          <button class="swatch saffron" data-setting="color" data-value="saffron" aria-label="Saffron and red"></button>
+          <button class="swatch blue" data-setting="color" data-value="blue" aria-label="Blue and gold"></button>
+          <button class="swatch rose" data-setting="color" data-value="rose" aria-label="Rose and gold"></button>
+        </div>
+      </div>
+      <div class="designer-panel hidden" data-panel="shape"><h3>Shape &amp; Size</h3><div class="choice-row"><button class="setting-choice selected" data-setting="shape" data-value="round">Round</button><button class="setting-choice" data-setting="shape" data-value="square">Square</button><button class="setting-choice" data-setting="shape" data-value="diamond">Diamond</button></div></div>
+      <div class="designer-panel hidden" data-panel="pattern"><h3>Pattern</h3><div class="choice-row"><button class="setting-choice selected" data-setting="pattern" data-value="heart">Hearts</button><button class="setting-choice" data-setting="pattern" data-value="dots">Dots</button><button class="setting-choice" data-setting="pattern" data-value="star">Stars</button></div></div>
+      <div class="designer-panel hidden" data-panel="style"><h3>Style</h3><div class="choice-row"><button class="setting-choice selected" data-setting="style" data-value="bright">Bright</button><button class="setting-choice" data-setting="style" data-value="minimal">Minimal</button><button class="setting-choice" data-setting="style" data-value="royal">Royal</button></div></div>
+      <button id="showGiftBtn" class="primary-btn" type="button">Continue to My Gift ✨</button>
+    </div>
+  </section>
+
+  <main id="experience" class="hidden">
+    <section class="hero scene">
+      <div class="hero-glow"></div>
+      <div class="hero-mandala">✦</div>
+      <p class="mini-label">WITH LOVE, FROM YOUR BROTHER</p>
+      <h2>Happy Raksha Bandhan</h2>
+      <p class="to-line">To my dear <span id="heroName"></span> ❤️</p>
+      <div class="hero-rakhi">🪷</div>
+      <p class="scroll-hint">Scroll slowly... your surprise is just beginning ↓</p>
+    </section>
+
+    <section class="section intro-section">
+      <div class="section-heading">
+        <div class="mini-label">JUST FOR YOU</div>
+        <h3>You are more special<br>than you know.</h3>
+      </div>
+      <p id="introText" class="wide-text"></p>
+    </section>
+
+    <section class="section letter-section">
+      <div class="section-heading">
+        <div class="mini-label">A LETTER FROM YOUR BROTHER</div>
+        <h3>Something I wanted<br>to tell you... 💌</h3>
+      </div>
+
+      <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Open letter">
+        <div class="env-back"></div>
+        <div class="paper">
+          <div class="paper-title">A Letter For You</div>
+          <div class="paper-heart">♥</div>
+        </div>
+        <div class="env-left"></div>
+        <div class="env-right"></div>
+        <div class="env-bottom"></div>
+        <div class="env-flap"></div>
+        <div class="wax">♥</div>
+      </div>
+
+      <div id="letterPanel" class="letter-panel hidden">
+        <article class="letter-card">
+          <div class="letter-top">❦</div>
+          <h4>My Dear <span id="letterName"></span>,</h4>
+          <div id="letterText"></div>
+          <div class="letter-sign">
+            With endless love,<br>
+            <strong>Your Brother Vamsi ❤️</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section rakhi-section">
+      <div class="section-heading">
+        <div class="mini-label">A SYMBOL OF OUR BOND</div>
+        <h3>Your Rakhi 🪢</h3>
+      </div>
+      <p class="wide-text">A small symbol for a bond that only gets stronger with time.</p>
+
+      <div class="rakhi-reveal">
+        <div class="thread"></div>
+        <div class="rakhi-orb">
+          <div class="rakhi-ring ring-one"></div>
+          <div class="rakhi-ring ring-two"></div>
+          <div class="rakhi-center">♥</div>
+        </div>
+        <div class="thread"></div>
+      </div>
+      <p class="rakhi-caption">For you, always. ❤️</p>
+    </section>
+
+    <section class="section gallery-section">
+      <div class="section-heading">
+        <div class="mini-label">YOUR MEMORIES</div>
+        <h3>A Little Gallery<br>Made Just For You 📸</h3>
+      </div>
+      <p id="gallerySubtitle" class="wide-text"></p>
+      <div id="gallery" class="gallery"></div>
+    </section>
+
+    <section class="section fun-section">
+      <div class="section-heading">
+        <div class="mini-label">ONE MORE THING</div>
+        <h3>Okay... one tiny test 😌</h3>
+      </div>
+
+      <div class="fun-card">
+        <div class="fun-icon">😎</div>
+        <h4>Who is the better sibling?</h4>
+        <p>Choose carefully. Your answer may affect your Rakhi privileges 😂</p>
+        <div class="fun-buttons">
+          <button data-answer="me">Obviously Vamsi 😎</button>
+          <button data-answer="sister">Obviously Me ❤️</button>
+        </div>
+        <div id="funResult" class="fun-result"></div>
+      </div>
+      <div class="sibling-gallery" aria-label="Fun sibling moments">
+        <article class="sibling-card sister-cartoon"><div class="cartoon-art">👧🏽<span>💖</span>👦🏽</div><strong>Partners in mischief</strong><small>Same team. Different excuses.</small></article>
+        <article class="sibling-card brother-cartoon"><div class="cartoon-art">👦🏻<span>🍫</span>👧🏻</div><strong>Chocolate protection squad</strong><small>Sharing is a work in progress.</small></article>
+        <article class="sibling-card festival-cartoon"><div class="cartoon-art">👩🏽<span>🪢</span>👦🏽</div><strong>Rakhi day energy</strong><small>Big smiles, bigger promises.</small></article>
+      </div>
+    </section>
+
+    <section class="section final-section">
+      <div class="final-heart">❤️</div>
+      <div class="mini-label">BEFORE YOU LEAVE</div>
+      <h3>One Last Thing...</h3>
+      <p id="finalMessage" class="final-message"></p>
+      <div class="signature">— Vamsi</div>
+      <div class="final-wish">Happy Raksha Bandhan 🌸</div>
+      <button id="replayBtn" class="ghost-btn">Read It Again ↺</button>
+    </section>
+  </main>
+
+  <div id="lightbox" class="lightbox hidden">
+    <button id="closeLightbox" class="lightbox-close">×</button>
+    <button id="prevPhoto" class="lightbox-nav left">‹</button>
+    <div class="lightbox-inner">
+      <img id="lightboxImg" alt="">
+      <div id="lightboxCaption"></div>
+    </div>
+    <button id="nextPhoto" class="lightbox-nav right">›</button>
+  </div>
+
+  <audio id="music" loop preload="none"></audio>
+
+  <script src="/app.js"></script>
+</body>
+</html>

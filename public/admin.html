@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Vamsi • Rakhi Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <div class="admin-bg"></div>
+
+  <section id="loginView" class="login-view">
+    <div class="login-box">
+      <div class="admin-icon">🪷</div>
+      <div class="eyebrow">RAKSHA BANDHAN</div>
+      <h1>Vamsi Admin</h1>
+      <p>Manage your sisters, memories and music.</p>
+
+      <form id="loginForm">
+        <input id="username" placeholder="Username" autocomplete="username" value="vamsi">
+        <input id="password" type="password" placeholder="Password" autocomplete="current-password" value="Chinnu8125">
+        <button>Login 🔐</button>
+      </form>
+      <div id="loginError" class="error"></div>
+    </div>
+  </section>
+
+  <main id="dashboard" class="hidden">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">WELCOME BACK</div>
+        <h1>Vamsi's Rakhi Studio ❤️</h1>
+      </div>
+      <div class="top-actions">
+        <a href="/" target="_blank" class="outline-btn">View Website ↗</a>
+        <button id="logoutBtn" class="outline-btn">Logout</button>
+      </div>
+    </header>
+
+    <section class="stats">
+      <div class="stat"><span id="sisterCount">0</span><small>Sisters</small></div>
+      <div class="stat"><span id="photoCount">0</span><small>Photos</small></div>
+      <div class="stat"><span id="musicCount">0</span><small>Music Tracks</small></div>
+    </section>
+
+    <section class="toolbar">
+      <div>
+        <h2>Your Sisters</h2>
+        <p>Add as many as you want. Every sister gets her own letter and gallery.</p>
+      </div>
+      <button id="addBtn" class="primary">+ Add Sister</button>
+    </section>
+
+    <section id="sisterList" class="sister-list"></section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModal">×</button>
+      <div class="eyebrow">PERSONALIZED GIFT</div>
+      <h2 id="modalTitle">Add Sister</h2>
+
+      <form id="sisterForm">
+        <input type="hidden" id="sisterId">
+
+        <label>Name</label>
+        <input id="formName" required placeholder="e.g. Anusha">
+
+        <label>Personal Introduction</label>
+        <textarea id="formIntro" rows="3" placeholder="A short message shown near the beginning..."></textarea>
+
+        <label>Special Letter</label>
+        <textarea id="formLetter" rows="9" placeholder="Write the letter. Leave a blank line between paragraphs."></textarea>
+
+        <label>Final Message</label>
+        <textarea id="formFinal" rows="5" placeholder="The emotional final message..."></textarea>
+
+        <button class="primary wide">Save Sister ❤️</button>
+      </form>
+      <div id="formError" class="error"></div>
+    </div>
+  </div>
+
+  <div id="photoModal" class="modal hidden">
+    <div class="modal-card wide-card">
+      <button class="modal-close" id="closePhotoModal">×</button>
+      <div class="eyebrow">MEMORIES</div>
+      <h2 id="photoTitle">Gallery</h2>
+
+      <form id="photoForm">
+        <input id="photoFiles" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple>
+        <p class="hint">Select as many photos as you want. Max 50 at once, 15 MB each.</p>
+
+        <div id="captionInputs"></div>
+
+        <button class="primary wide" type="submit">Upload Photos 📸</button>
+      </form>
+
+      <hr>
+
+      <div class="music-row">
+        <div>
+          <strong>Background music</strong>
+          <div id="musicStatus" class="hint">No music uploaded.</div>
+        </div>
+        <input id="musicFile" type="file" accept="audio/*">
+        <button id="uploadMusicBtn" class="outline-btn">Upload Music 🎵</button>
+        <button id="deleteMusicBtn" class="danger-outline">Remove</button>
+      </div>
+
+      <div id="photoGrid" class="photo-grid"></div>
+    </div>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>
