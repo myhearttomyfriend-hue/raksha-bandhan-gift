@@ -18,12 +18,36 @@ const UPLOAD_DIR = path.resolve(process.env.UPLOAD_DIR || path.join(ROOT, "uploa
 
 function defaultSisterContent(name) {
   const sisterName = String(name || "my dear sister").trim() || "my dear sister";
+  const styles = [
+    {
+      intro: `${sisterName}, your smile makes ordinary moments feel beautiful. I am so lucky to call you my sister.`,
+      letter: `Dear ${sisterName},\n\nSome of my happiest memories have you in them. Your warmth, courage and laughter make our family brighter every day.\n\nOn this Raksha Bandhan, I want you to know that I will always believe in you, protect our bond and celebrate every dream you chase.\n\nWith lots of love,\nYour Brother ❤️`,
+      finalMessage: `${sisterName}, life is more joyful because you are my sister. Keep smiling and remember that I am always with you. ❤️`
+    },
+    {
+      intro: `Every family has someone who makes everything feel lighter, and for me that person is you, ${sisterName}.`,
+      letter: `My Lovely ${sisterName},\n\nThank you for the countless laughs, honest advice and little moments that have made growing up so special. You are not only my sister, but also one of my favorite people.\n\nMay this Raksha Bandhan bring you confidence, happiness and the courage to reach everything your heart hopes for. I will always be cheering for you.\n\nWith love always,\nYour Brother ❤️`,
+      finalMessage: `Dear ${sisterName}, you are truly one of a kind. May every new chapter bring you closer to the happiness you deserve. ❤️`
+    },
+    {
+      intro: `${sisterName}, having you in my life is a beautiful gift I will always be thankful for.`,
+      letter: `To My Dear Sister ${sisterName},\n\nOur bond is made of shared secrets, silly arguments, unforgettable memories and a love that never changes. Thank you for being completely yourself and for making life so much more meaningful.\n\nThis Raksha Bandhan, I promise that distance, time or challenges will never make me stop caring for you. You will always have a place in my heart.\n\nWith a big hug,\nYour Loving Brother ❤️`,
+      finalMessage: `${sisterName}, no matter how much life changes, you will always be my precious sister and my forever family. ❤️`
+    },
+    {
+      intro: `To ${sisterName}: your kindness and strength inspire me more than you probably know.`,
+      letter: `My Wonderful Sister ${sisterName},\n\nYou have a way of bringing comfort, fun and hope wherever you go. I am proud of the person you are and grateful for every chapter we have shared together.\n\nOn Raksha Bandhan, I wish you a future full of wonderful surprises, brave choices and peaceful days. Whenever you need me, I will be there.\n\nAll my love,\nYour Brother ❤️`,
+      finalMessage: `${sisterName}, may your heart always be happy and your dreams always feel within reach. I love you more than words can say. ❤️`
+    },
+    {
+      intro: `${sisterName}, you make our family warmer, our memories brighter and my life better.`,
+      letter: `Dearest ${sisterName},\n\nThank you for being the sister who can make me laugh, remind me to stay strong and turn simple days into lasting memories. Our relationship is something I treasure deeply.\n\nThis Raksha Bandhan is a reminder that our connection will stay strong through every success, surprise and new beginning. I am always just a call away.\n\nForever grateful for you,\nYour Brother ❤️`,
+      finalMessage: `${sisterName}, you are loved, valued and never alone. I am proud to be your brother today and always. ❤️`
+    }
+  ];
+  const styleIndex = [...sisterName].reduce((total, character) => total + character.charCodeAt(0), 0) % styles.length;
 
-  return {
-    intro: `${sisterName}, you bring a special kind of happiness into every day. Having you as my sister is one of life's greatest blessings.`,
-    letter: `My Dearest ${sisterName},\n\nYour kindness, laughter and beautiful heart make our bond truly special. I am grateful for every memory we share and every moment that reminds me how lucky I am to have you as my sister.\n\nThis Raksha Bandhan, I promise to always stand beside you, cheer for your dreams and keep our bond strong through every chapter of life.\n\nWith endless love and warm wishes,\nYour Loving Brother ❤️`,
-    finalMessage: `${sisterName}, thank you for being such a wonderful sister. Wherever life takes us, you will always have my love, support and one very annoying brother. ❤️`
-  };
+  return styles[styleIndex];
 }
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
