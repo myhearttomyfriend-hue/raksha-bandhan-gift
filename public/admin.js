@@ -1,11 +1,15 @@
 let sisters = [];
 let selectedSister = null;
 
-const defaultSisterContent = {
-  intro: "You light up my world with your smile and love. Having you in my life is a true blessing.",
-  letter: "My Dearest Sister,\n\nYou light up my world with your smile and love. Having you in my life is a true blessing.\n\nThis Raksha Bandhan, I promise no distance or challenge will ever break our bond. Thank you for filling our days with laughter, courage and so much love.\n\nWith endless love and warm wishes,\nYour Loving Brother ❤️",
-  finalMessage: "Thank you for being the most amazing sister in the world! May our bond continue to grow stronger with each passing year. No matter where life takes us, you will always have my love, support and one very annoying brother. ❤️"
-};
+function defaultSisterContent(name) {
+  const sisterName = String(name || "my dear sister").trim() || "my dear sister";
+
+  return {
+    intro: `${sisterName}, you bring a special kind of happiness into every day. Having you as my sister is one of life's greatest blessings.`,
+    letter: `My Dearest ${sisterName},\n\nYour kindness, laughter and beautiful heart make our bond truly special. I am grateful for every memory we share and every moment that reminds me how lucky I am to have you as my sister.\n\nThis Raksha Bandhan, I promise to always stand beside you, cheer for your dreams and keep our bond strong through every chapter of life.\n\nWith endless love and warm wishes,\nYour Loving Brother ❤️`,
+    finalMessage: `${sisterName}, thank you for being such a wonderful sister. Wherever life takes us, you will always have my love, support and one very annoying brother. ❤️`
+  };
+}
 
 const $ = (s) => document.querySelector(s);
 
@@ -116,9 +120,10 @@ function openAdd() {
   $("#modalTitle").textContent = "Add Sister";
   $("#sisterId").value = "";
   $("#formName").value = "";
-  $("#formIntro").value = defaultSisterContent.intro;
-  $("#formLetter").value = defaultSisterContent.letter;
-  $("#formFinal").value = defaultSisterContent.finalMessage;
+  const defaults = defaultSisterContent("");
+  $("#formIntro").value = defaults.intro;
+  $("#formLetter").value = defaults.letter;
+  $("#formFinal").value = defaults.finalMessage;
   openModal();
 }
 
@@ -377,6 +382,14 @@ $("#addBtn").addEventListener("click", openAdd);
 $("#closeModal").addEventListener("click", closeModal);
 $("#closePhotoModal").addEventListener("click", closePhotos);
 $("#sisterForm").addEventListener("submit", saveSister);
+$("#formName").addEventListener("input", (e) => {
+  if (!$("#sisterId").value) {
+    const defaults = defaultSisterContent(e.target.value);
+    $("#formIntro").value = defaults.intro;
+    $("#formLetter").value = defaults.letter;
+    $("#formFinal").value = defaults.finalMessage;
+  }
+});
 $("#photoForm").addEventListener("submit", uploadPhotos);
 $("#photoFiles").addEventListener("change", createCaptionInputs);
 $("#uploadMusicBtn").addEventListener("click", uploadMusic);

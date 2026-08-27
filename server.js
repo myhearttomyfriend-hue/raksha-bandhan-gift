@@ -16,11 +16,15 @@ const ROOT = __dirname;
 const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(ROOT, "data"));
 const UPLOAD_DIR = path.resolve(process.env.UPLOAD_DIR || path.join(ROOT, "uploads"));
 
-const DEFAULT_SISTER_CONTENT = {
-  intro: "You light up my world with your smile and love. Having you in my life is a true blessing.",
-  letter: "My Dearest Sister,\n\nYou light up my world with your smile and love. Having you in my life is a true blessing.\n\nThis Raksha Bandhan, I promise no distance or challenge will ever break our bond. Thank you for filling our days with laughter, courage and so much love.\n\nWith endless love and warm wishes,\nYour Loving Brother ❤️",
-  finalMessage: "Thank you for being the most amazing sister in the world! May our bond continue to grow stronger with each passing year. No matter where life takes us, you will always have my love, support and one very annoying brother. ❤️"
-};
+function defaultSisterContent(name) {
+  const sisterName = String(name || "my dear sister").trim() || "my dear sister";
+
+  return {
+    intro: `${sisterName}, you bring a special kind of happiness into every day. Having you as my sister is one of life's greatest blessings.`,
+    letter: `My Dearest ${sisterName},\n\nYour kindness, laughter and beautiful heart make our bond truly special. I am grateful for every memory we share and every moment that reminds me how lucky I am to have you as my sister.\n\nThis Raksha Bandhan, I promise to always stand beside you, cheer for your dreams and keep our bond strong through every chapter of life.\n\nWith endless love and warm wishes,\nYour Loving Brother ❤️`,
+    finalMessage: `${sisterName}, thank you for being such a wonderful sister. Wherever life takes us, you will always have my love, support and one very annoying brother. ❤️`
+  };
+}
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
@@ -284,9 +288,9 @@ app.get("/api/admin/sisters", requireAdmin, (_req, res) => {
 app.post("/api/admin/sisters", requireAdmin, (req, res) => {
   const {
     name = "",
-    intro = DEFAULT_SISTER_CONTENT.intro,
-    letter = DEFAULT_SISTER_CONTENT.letter,
-    finalMessage = DEFAULT_SISTER_CONTENT.finalMessage
+    intro,
+    letter,
+    finalMessage
   } = req.body || {};
 
   const cleanName = String(name).trim();
@@ -294,6 +298,8 @@ app.post("/api/admin/sisters", requireAdmin, (req, res) => {
   if (!cleanName) {
     return res.status(400).json({ error: "Name is required." });
   }
+
+  const defaults = defaultSisterContent(cleanName);
 
   const duplicate = db
     .prepare("SELECT id FROM sisters WHERE lower(name) = lower(?)")
@@ -313,9 +319,9 @@ app.post("/api/admin/sisters", requireAdmin, (req, res) => {
     .run(
       cleanName,
       slug,
-      String(intro).trim() || DEFAULT_SISTER_CONTENT.intro,
-      String(letter).trim() || DEFAULT_SISTER_CONTENT.letter,
-      String(finalMessage).trim() || DEFAULT_SISTER_CONTENT.finalMessage
+      String(intro ?? "").trim() || defaults.intro,
+      String(letter ?? "").trim() || defaults.letter,
+      String(finalMessage ?? "").trim() || defaults.finalMessage
     );
 
   const row = db.prepare("SELECT * FROM sisters WHERE id = ?").get(info.lastInsertRowid);
