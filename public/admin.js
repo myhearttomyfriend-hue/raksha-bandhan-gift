@@ -276,6 +276,12 @@ async function uploadPhotos(e) {
     return;
   }
 
+  const oversized = files.find(file => file.size > 8 * 1024 * 1024);
+  if (oversized) {
+    alert(`${oversized.name} is larger than 8 MB. Please resize it and try again.`);
+    return;
+  }
+
   const form = new FormData();
   files.forEach(file => form.append("photos", file));
 
